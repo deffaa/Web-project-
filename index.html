@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Manajemen Data orang</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-container" class="auth-wrapper">
+        <div class="auth-box">
+            <h2>Welcome Back</h2>
+            <p>Silakan login untuk mengakses dashboard</p>
+            <form id="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard-container" class="hidden">
+        <nav class="navbar">
+            <h1>Data Warga Setempat</h1>
+            <button id="logout-btn" class="btn-logout">Logout</button>
+        </nav>
+
+        <main class="content">
+            <div class="header-actions">
+                <h2>Master Data Table</h2>
+                <div class="buttons">
+                    <button id="open-modal-btn" class="btn-success">+ Tambah Data</button>
+                    <button onclick="exportExcel()" class="btn-excel">Excel</button>
+                    <button onclick="exportPDF()" class="btn-pdf">PDF</button>
+                    <button onclick="printData()" class="btn-print">Print</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Lengkap</th>
+                            <th>File Terupload</th>
+                            <th>Tanda Tangan</th>
+                            <th class="no-print">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal-overlay" class="modal-hidden">
+        <div class="modal-content">
+            <h3 id="modal-title">Formulir Entri Data</h3>
+            <hr>
+            <form id="crud-form">
+                <input type="hidden" id="edit-index" value="">
+
+                <label>Nama Lengkap:</label>
+                <input type="text" id="input-nama" placeholder="Masukkan nama..." required>
+
+                <label>Upload Multiple Files:</label>
+                <input type="file" id="input-files" multiple>
+
+                <label>Tanda Tangan Digital:</label>
+                <div class="canvas-container">
+                    <canvas id="signature-pad" width="400" height="150"></canvas>
+                    <button type="button" id="clear-canvas">Bersihkan Canvas</button>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="close-modal" class="btn-danger">Batal</button>
+                    <button type="submit" class="btn-primary">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
